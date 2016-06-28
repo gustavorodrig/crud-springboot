@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorator="LayoutPadrao">
-    
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="LayoutPadrao">
+
 <head>
 	<title>Pesquisa de Usuarios</title>
 </head>
@@ -12,64 +12,45 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<div class="clearfix">
-	   			<h1 class="panel-title aw-titulo-panel">Pesquisa de Usuarios</h1>
-	   			<a class="btn btn-link aw-link-panel" href="/usuarios/novo">Novo Usuario</a>
-	   		</div>
-	   	</div>
-	   	
-	   	<div class="panel-body">
-	   		<table class="table table-bordered table-striped">
-	   			<thead>
-	   				<tr>
-	   					<th class="text-center col-md-1">#</th>
-	   					<th>Nome</th>
-						<th>Sobrenome</th>
-	   					<th class="text-center col-md-2">Data de Nascimento</th>
-	   					<th class="text-right col-md-2">Valor</th>
-	   					<th class="text-center col-md-2">Sexo</th>
-	   					<th class="col-md-1"></th>
-	   				</tr>
-	   			</thead>
-	   			<tbody>
-	   				<tr th:each="usuario : ${usuarios}">
-	   					<td class="text-center" th:text="${usuario.id}"></td>
-	   					<td th:text="${usuario.nome}"></td>
-						<td th:text="${usuario.sobrenome}"></td>
-	   					<td class="text-center" th:text="${{usuario.dataNascimento}}"></td>
-	   					<td class="text-right" th:text="|R$ ${{usuario.valor}}|"></td>
-	   					<td class="text-center">
-	   						<span class="label" th:text="${usuario.sexo.descricao}">
-	   							<!--th:classappend="${usuario.masculino.descricao ? 'label-danger' : 'label-success'}"-->
+				<h1 class="panel-title aw-titulo-panel">Pesquisa de Usuarios</h1>
+				<a class="btn btn-link aw-link-panel" th:href="@{/usuarios/novo}">Novo Usuario</a>
+			</div>
+		</div>
 
+		<div class="panel-body">
+			<table class="table table-bordered table-striped">
+				<thead>
+				<tr>
+					<th class="text-center col-md-1">#</th>
+					<th>Nome</th>
+					<th>Sobrenome</th>
+					<th class="text-center col-md-2">Data de Nascimento</th>
+					<th class="text-right col-md-2">Valor</th>
+					<th class="text-center col-md-2">Sexo</th>
+					<th class="col-md-1"></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="usuario : ${usuarios}">
+					<td class="text-center" th:text="${usuario.id}"></td>
+					<td th:text="${usuario.nome}"></td>
+					<td th:text="${usuario.sobrenome}"></td>
+					<td class="text-center" th:text="${{usuario.dataNascimento}}"></td>
+					<td class="text-right" th:text="|R$ ${{usuario.valor}}|"></td>
+					<td class="text-center">
+	   						<span class="label" th:text="${usuario.sexo.descricao}"
+								  th:classappend="${usuario.sexo.descricao == Masculino ? 'label-danger' : 'label-success'}"></span>
+					</td>
+					<td class="text-center">
 
-							</span>
-	   					</td>
-	   					<td class="text-center">
-	   						
-	   					</td>
-	   				</tr>
-	   				<tr>
-	   					<td colspan="6" th:if="${#lists.isEmpty(usuarios)}">Nenhum Usuario foi encontrado</td>
-	   				</tr>
-	   			</tbody>
-	   		</table>
-	   	</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" th:if="${#lists.isEmpty(usuarios)}">Nenhum Usuario foi encontrado</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </section>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
